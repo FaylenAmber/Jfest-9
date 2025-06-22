@@ -18,7 +18,10 @@ class OrderController extends Controller
             ['status', OrderStatusEnum::Pending->value],
             ['expired_at', '>', now()]
         ])->with([
-            'tickets' => ['activity' => ['sale']],
+            'tickets' => [
+                'order',
+                'activity' => ['sale']
+            ],
             'registrations' => ['competition']
         ])->latest()->first();
 
