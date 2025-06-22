@@ -5,6 +5,7 @@ import { confirmAlert } from "react-confirm-alert";
 
 import { Button } from "@/components/button";
 import { Text } from "@/components/text";
+import { isOrderLocked } from "@/utils/lockedOrders";
 
 const Wrapper = styled("div", {
     display: "flex",
@@ -47,15 +48,13 @@ const RemoveButton = styled("button", {
     },
 });
 
-function ConfirmRemoveElement({ removeItemUrl }) {
-    function handleRemoveItem(handleClose) {
-        return () => {
-            handleClose();
-            return router.delete(removeItemUrl);
-        };
+function ConfirmRemoveElement({ removeItemUrl, onClose }) {
+    function handleRemoveItem() {
+        onClose();
+        router.delete(removeItemUrl);
     }
 
-    return ({ onClose: handleClose }) => (
+    return (
         <div
             className={css({
                 position: "absolute",
@@ -100,10 +99,10 @@ function ConfirmRemoveElement({ removeItemUrl }) {
                     },
                 }).toString()}
             >
-                <Button onClick={handleClose} fullWidth>
+                <Button onClick={onClose} fullWidth>
                     No, Keep It!
                 </Button>
-                <Button color="light" onClick={handleRemoveItem(handleClose)} fullWidth>
+                <Button color="light" onClick={handleRemoveItem} fullWidth>
                     Yes, Delete It!
                 </Button>
             </div>
@@ -116,7 +115,12 @@ export default function TicketCard({ data }) {
 
     function handleRemoveOrder() {
         return confirmAlert({
-            customUI: ConfirmRemoveElement({ removeItemUrl: data.remove_url }),
+            customUI: ({ onClose }) => (
+                <ConfirmRemoveElement
+                    removeItemUrl={data.remove_url}
+                    onClose={onClose}
+                />
+            ),
             closeOnClickOutside: true,
             closeOnEscape: true,
             overlayClassName: css({
@@ -132,12 +136,12 @@ export default function TicketCard({ data }) {
         });
     }
 
+    const isLocked = isOrderLocked(data.order?.reference);
+
     return (
         <Wrapper>
-            {width < 768 && (
-                <>
-                    <RemoveButton onClick={handleRemoveOrder}>X</RemoveButton>
-                </>
+            {width < 768 && !isLocked && (
+                <RemoveButton onClick={handleRemoveOrder}>X</RemoveButton>
             )}
             <div
                 style={{
@@ -150,9 +154,9 @@ export default function TicketCard({ data }) {
                 <Text
                     css={{
                         color: "$dark",
-                        fontSize: "1rem", 
+                        fontSize: "1rem",
                         overflow: "hidden",
-                        "@mobile" : {
+                        "@mobile": {
                             fontSize: "0.7rem"
                         }
                     }}
@@ -193,7 +197,7 @@ export default function TicketCard({ data }) {
                         Pending
                     </Text>
                 )}
-                {width > 768 && !data.registration_id && (
+                {width > 768 && !data.registration_id && !isLocked && (
                     <RemoveButton onClick={handleRemoveOrder}>
                         Hapus
                     </RemoveButton>

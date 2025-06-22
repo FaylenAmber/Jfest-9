@@ -31,7 +31,9 @@ function OrderPage({ data, links: { checkoutUrl, orderTicketUrl }, meta }) {
     const { flash } = usePage().props;
 
     useEffect(() => {
-        if (flash.message) return toast(flash.message);
+        if (flash.message) {
+            toast(flash.message);
+        }
     }, [flash]);
 
     if (
@@ -54,11 +56,11 @@ function OrderPage({ data, links: { checkoutUrl, orderTicketUrl }, meta }) {
                     }).toString()}
                 >
                     <Title order={4}>Nothing Here</Title>
-                    <Text css={{ 
+                    <Text css={{
                         color: "$dark",
                         "@mobile": {
                             width: "80%",
-                        } 
+                        }
                         }}>
                         You don't have any orders yet. Let's make an order now!
                     </Text>
@@ -130,12 +132,12 @@ function OrderPage({ data, links: { checkoutUrl, orderTicketUrl }, meta }) {
                     <Text
                         css={{
                             color: "$secondary",
-                            fontSize: "0.8rem", 
+                            fontSize: "0.8rem",
                             overflow: "hidden",
                         }}
                     >
-                        * Harga tertera belum termasuk tarif PPN sebesar{' '} 
-                        <span className={css({ whiteSpace: "nowrap" }).toString()}>Rp 2.500</span> per Item     
+                        * Harga tertera belum termasuk tarif PPN sebesar{' '}
+                        <span className={css({ whiteSpace: "nowrap" }).toString()}>Rp 2.500</span> per Item
                     </Text>
                 </section>
                 <Link href={checkoutUrl} style={{ textDecoration: "none" }}>

@@ -54,7 +54,7 @@ function CheckoutPage({ data, links: { redirectToPaymentUrl }, meta }) {
         .map(([_, data]) => data)
         .filter(data => data.item.price !== 0)
         .reduce((total, data) => total + data.count, 0);
-    
+
     let totalRegistration = registrations.map(([_, data]) => data).reduce((total, data) => total + data.count, 0);
 
     return (
@@ -106,12 +106,12 @@ function CheckoutPage({ data, links: { redirectToPaymentUrl }, meta }) {
                         <Text
                             css={{
                                 color: "$secondary",
-                                fontSize: "0.8rem", 
+                                fontSize: "0.8rem",
                                 overflow: "hidden",
                             }}
                         >
-                            Harga diatas belum termasuk tarif PPN sebesar{' '} 
-                            <span className={css({ whiteSpace: "nowrap" }).toString()}>Rp 2.500</span> per Item 
+                            Harga diatas belum termasuk tarif PPN sebesar{' '}
+                            <span className={css({ whiteSpace: "nowrap" }).toString()}>Rp 2.500</span> per Item
                         </Text>
                     </section>
                     <section
@@ -125,6 +125,7 @@ function CheckoutPage({ data, links: { redirectToPaymentUrl }, meta }) {
                             // fee persentase
                             // fee={data.total_price * 0.07}
                             // fee fixed 2500
+                            order_id={data.reference}
                             fee={(totalTicket + totalRegistration) * 2500}
                             totalPrice={data.total_price}
                             redirectToPaymentUrl={redirectToPaymentUrl}

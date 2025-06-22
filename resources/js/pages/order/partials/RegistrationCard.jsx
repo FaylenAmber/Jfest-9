@@ -6,6 +6,7 @@ import { css, styled } from "@/root/stitches.config";
 
 import { Button } from "@/components/button";
 import { Text } from "@/components/text";
+import { isOrderLocked } from "@/utils/lockedOrders";
 
 const Wrapper = styled("div", {
     display: "flex",
@@ -48,15 +49,13 @@ const RemoveButton = styled("button", {
     },
 });
 
-function ConfirmRemoveElement({ removeItemUrl }) {
-    function handleRemoveItem(handleClose) {
-        return () => {
-            handleClose();
-            return router.delete(removeItemUrl);
-        };
+function ConfirmRemoveElement({ removeItemUrl, onClose }) {
+    function handleRemoveItem() {
+        onClose();
+        router.delete(removeItemUrl);
     }
 
-    return ({ onClose: handleClose }) => (
+    return (
         <div
             className={css({
                 position: "absolute",
@@ -101,10 +100,10 @@ function ConfirmRemoveElement({ removeItemUrl }) {
                     },
                 }).toString()}
             >
-                <Button onClick={handleClose} fullWidth>
+                <Button onClick={onClose} fullWidth>
                     No, Keep It!
                 </Button>
-                <Button color="light" onClick={handleRemoveItem(handleClose)} fullWidth>
+                <Button color="light" onClick={handleRemoveItem} fullWidth>
                     Yes, Delete It!
                 </Button>
             </div>
@@ -114,10 +113,16 @@ function ConfirmRemoveElement({ removeItemUrl }) {
 
 export default function RegistrationCard({ data }) {
     const { width } = useWindowSize();
+    const isLocked = isOrderLocked(data.order?.reference);
 
     function handleRemoveOrder() {
         return confirmAlert({
-            customUI: ConfirmRemoveElement({ removeItemUrl: data.remove_url }),
+            customUI: ({ onClose }) => (
+                <ConfirmRemoveElement
+                    removeItemUrl={data.remove_url}
+                    onClose={onClose}
+                />
+            ),
             closeOnClickOutside: true,
             closeOnEscape: true,
             overlayClassName: css({
@@ -135,10 +140,8 @@ export default function RegistrationCard({ data }) {
 
     return (
         <Wrapper>
-            {width < 768 && (
-                <>
-                    <RemoveButton onClick={handleRemoveOrder}>X</RemoveButton>
-                </>
+            {width < 768 && !isLocked && (
+                <RemoveButton onClick={handleRemoveOrder}>X</RemoveButton>
             )}
             <div
                 style={{
@@ -154,7 +157,7 @@ export default function RegistrationCard({ data }) {
                         fontSize: "1rem",
                         "@mobile": {
                             fontSize: "0.7rem",
-                        }
+                        },
                     }}
                 >
                     Competition - {data.competition.registrationCloseAtStr}
@@ -180,7 +183,9 @@ export default function RegistrationCard({ data }) {
                         >
                             Rp {data.price.toLocaleString("id-ID")}
                         </Text>
-                        <RemoveButton onClick={handleRemoveOrder}>Hapus</RemoveButton>
+                        {!isLocked && (
+                            <RemoveButton onClick={handleRemoveOrder}>Hapus</RemoveButton>
+                        )}
                     </>
                 )}
                 {!data.uuid && (
