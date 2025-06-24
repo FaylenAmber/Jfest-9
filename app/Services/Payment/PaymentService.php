@@ -24,6 +24,7 @@ class PaymentService
             $handler = new $this->handlers[$handler];
             return $handler->handleNotification($afterCallback);
         }
+        return [];
     }
 
     private function isVerifiedHandler(string $handler): bool
