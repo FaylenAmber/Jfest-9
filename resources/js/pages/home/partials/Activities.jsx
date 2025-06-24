@@ -41,7 +41,7 @@ const DisabledBtn = styled("div", {
     justifyContent: "center",
     width: "100%",
     height: "$button-desktop-height",
-    border: "$secondary 0.3vw solid",
+    border: "$dark 0.3vw solid",
     borderRadius: "0.5rem",
     "@laptop": {
         height: "$button-laptop-height",
@@ -302,13 +302,13 @@ export default function Activities({ activities, competitions }) {
                                 </ActivityBody>
                                 {(isActivity && !activity.sale.is_tickets_available) || (isActivity && !activity.is_going_on) ? (
                                     <DisabledBtn>
-                                        <Text css={{ color: "$secondary" }}>
+                                        <Text css={{ color: "$dark" }}>
                                             {activity.is_going_on ? "Sold Out" : "Event Ended"}
                                         </Text>
                                     </DisabledBtn>
                                 ) : (!isActivity && activity.is_closed) || (!isActivity && activity.is_quota_full) ? (
                                     <DisabledBtn>
-                                        <Text css={{ color: "$secondary" }}>
+                                        <Text css={{ color: "$dark" }}>
                                             Registration Closed
                                         </Text>
                                     </DisabledBtn>

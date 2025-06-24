@@ -133,7 +133,7 @@ export default function Hightlight() {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    paddingBottom: "28vw",
+                    paddingBottom: "35vw",
                     gap: "2rem",
                     zIndex: 1,
                     "@mobile": {
@@ -211,8 +211,8 @@ export default function Hightlight() {
                                 src={comingSoon}
                                 alt=""
                                 className={css({
-                                    width: "40%",
-                                    "@mobile": { width: "60%" },
+                                    width: "75%",
+                                    "@mobile": { width: "75%" },
                                 }).toString()}
                             />
                         </div>

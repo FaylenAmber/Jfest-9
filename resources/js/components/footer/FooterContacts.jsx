@@ -7,14 +7,14 @@ import { ReactComponent as WhatsappIcon } from "@/assets/icons/whatsapp.svg";
 const contacts = [
     {
         id: 1,
-        label: "Reyna (081238275881)",
-        href: "https://wa.me/+6281238275881?text=hallo%20kak%20Reyy%2C%20saya%20ingin%20bertanya%20nih.%20",
+        label: "Mahesa (081339397007)",
+        href: "https://wa.me/+6281339397007?text=hallo%20kak%20Esaa%2C%20saya%20ingin%20bertanya%20nih.%20",
         Icon: WhatsappIcon,
     },
     {
         id: 2,
-        label: "Angga (0895410930990)",
-        href: "https://wa.me/+62895410930990?text=Hai%20kak%20Angga%2C%20saya%20ingin%20bertanya%20nih.%20",
+        label: "Surya (085737243978)",
+        href: "https://wa.me/+6285737243978?text=Hai%20kak%20Angga%2C%20saya%20ingin%20bertanya%20nih.%20",
         Icon: WhatsappIcon,
     },
 ];
