@@ -19,7 +19,7 @@ export const {
             secondary: "#c32a35",
             tertiary: "#5c6748",
             dark: "#101d19",
-            white: "#e1e1d3",
+            white: "#f9f4f4",
         },
         fonts: {
             main: "batangas",
