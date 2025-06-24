@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            Jfest8Seeder::class,
+            Jfest9Seeder::class,
         ]);
     }
 }
