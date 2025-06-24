@@ -9,7 +9,7 @@ const Logo = styled(JFestLogo, {
     display: "block",
     objectFit: "cover",
     objectPosition: "center",
-    width: 55,
+    width: 85,
 });
 
 export default function NavbarLogo() {

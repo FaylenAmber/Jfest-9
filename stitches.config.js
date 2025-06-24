@@ -15,10 +15,10 @@ export const {
     prefix: "jfest",
     theme: {
         colors: {
-            primary: "#292a23",
-            secondary: "#c32a35",
+            primary: "#ffffff",
+            secondary: "#e6c745",
             tertiary: "#5c6748",
-            dark: "#101d19",
+            dark: "#252525",
             white: "#f9f4f4",
         },
         fonts: {
