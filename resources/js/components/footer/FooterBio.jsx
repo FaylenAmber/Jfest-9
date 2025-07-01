@@ -10,7 +10,7 @@ export default function FooterBio() {
             className={css({
                 display: "flex",
                 flexDirection: "column",
-                gridColumn: "1 / 7",
+                gridColumn: "1 / 6",
                 gap: "2rem",
                 zIndex: 2,
                 "@tablet": { gridColumn: "1 / -1" },
@@ -25,18 +25,31 @@ export default function FooterBio() {
                     height: "fit-content",
                     width: "fit-content",
                     gap: "1.5rem",
-                    paddingLeft: "-5rem"
                 }).toString()}
             >
                 <JFestLogo
                     className={css({
-                        width: 180,
-                        "@mobile": { width: 90,  },
+                        width: 120,
+                        "@mobile": {
+                            width: 80,
+                            transform: "translate(-1rem, 1rem)",
+                        },
                     }).toString()}
                 />
             </div>
             <Text
-                css={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+                css={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                    fontSize: "0.95rem",
+                    lineHeight: "1.75",
+                    maxWidth: "500px",
+                    paddingLeft: "1.5rem",
+                    "@mobile": {
+                    paddingLeft: "0rem",
+                    },
+                }}
             >
                 <span>
                     The festival is organized and supported by STIKOM Bali

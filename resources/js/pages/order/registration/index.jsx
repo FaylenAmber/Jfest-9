@@ -112,47 +112,58 @@ function OrderRegistrationPage({ data, links: { submitUrl }, meta }) {
             {generateMetadata(meta.head)}
             <Container css={{ gap: "2rem" }}>
                 <HeaderSection data={data} isActivity={isActivity} />
-                { data.is_closed ? (
-                    <Text css={{ color:"$secondary", overflow:"hidden", textAlign: "center" }}>Registration is Closed</Text>
+                {data.is_closed ? (
+                    <Text css={{ color: "$secondary", overflow: "hidden", textAlign: "center" }}>
+                        Registration is Closed
+                    </Text>
                 ) : (
                     <Formik
                         initialValues={initialValues}
                         onSubmit={handleSubmitRegistrationsOrder}
                     >
-                        {({ values, handleBlur, handleChange }) => {
-                            return (
-                                <Form
-                                    className={css({
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        gap: "1.25rem",
-                                        width: "50%",
-                                        margin: "0 auto",
-                                        "@mobile": { width: "80%" },
-                                    }).toString()}
-                                >
-                                    <Text css={{ fontSize: "1.6rem", color: "$dark", overflow: "hidden" }}>Identitas Peserta</Text>
+                        {({ values, handleBlur, handleChange }) => (
+                            <Form
+                                className={css({
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: "1.25rem",
+                                    width: "50%",
+                                    margin: "0 auto",
+                                    "@mobile": { width: "80%" },
+                                }).toString()}
+                            >
+                                <Text css={{ fontSize: "1.6rem", color: "$dark", overflow: "hidden" }}>
+                                    Identitas Peserta
+                                </Text>
+
+                                <InputOuterWrapper>
+                                    <InputWrapper>
+                                        <Text as="label" htmlFor="email" css={{ fontWeight: "medium", fontSize: "1rem", color: "$dark" }}>
+                                            Email
+                                        </Text>
+                                        <TextInput
+                                            id="email"
+                                            name="email"
+                                            placeholder="Ketikan email mu..."
+                                            value={values.email}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            css={{ width: "100%" }}
+                                            required="required"
+                                            autocomplete="email"
+                                        />
+                                        {errors.email && <ErrorMessage msg={errors.email} />}
+                                    </InputWrapper>
+                                </InputOuterWrapper>
+
+                                {data.use_name_field && (
                                     <InputOuterWrapper>
                                         <InputWrapper>
+                                            <Text as="label" htmlFor="name" css={{ fontWeight: "medium", fontSize: "1rem", color: "$dark" }}>
+                                                Nama Lengkap
+                                            </Text>
                                             <TextInput
-                                                name="email"
-                                                placeholder="Ketikan email mu..."
-                                                value={values.email}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                css={{ width: "100%" }}
-                                                required="required"
-                                                autocomplete="email"
-                                            />
-                                            {errors.email && (
-                                                <ErrorMessage msg={errors.email} />
-                                            )}
-                                        </InputWrapper>
-                                    </InputOuterWrapper>
-                                    {data.use_name_field && (
-                                    <InputOuterWrapper>
-                                        <InputWrapper>
-                                            <TextInput
+                                                id="name"
                                                 name="name"
                                                 placeholder="Ketikan nama mu..."
                                                 value={values.name}
@@ -162,136 +173,142 @@ function OrderRegistrationPage({ data, links: { submitUrl }, meta }) {
                                                 required="required"
                                                 autocomplete="name"
                                             />
-                                            {errors.name && (
-                                                <ErrorMessage msg={errors.name} />
-                                            )}
+                                            {errors.name && <ErrorMessage msg={errors.name} />}
                                         </InputWrapper>
                                     </InputOuterWrapper>
-                                    )}
-                                    {data.use_nickname_field && (
-                                        <InputOuterWrapper>
-                                            <InputWrapper>
-                                                <TextInput
-                                                    name="nickname"
-                                                    placeholder="Ketikan nickname atau alias mu (opsional)..."
-                                                    value={values.nickname}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    css={{ width: "100%" }}
-                                                    autocomplete="nickname"
-                                                />
-                                                {errors.nickname && (
-                                                    <ErrorMessage
-                                                        msg={errors.nickname}
-                                                    />
-                                                )}
-                                            </InputWrapper>
-                                        </InputOuterWrapper>
-                                    )}
+                                )}
+
+                                {data.use_nickname_field && (
                                     <InputOuterWrapper>
                                         <InputWrapper>
+                                            <Text as="label" htmlFor="nickname" css={{ fontWeight: "medium", fontSize: "1rem", color: "$dark" }}>
+                                                Nickname / Alias (Opsional)
+                                            </Text>
                                             <TextInput
-                                                name="phone"
-                                                placeholder="Ketikan nomor telepon mu..."
-                                                value={values.phone}
+                                                id="nickname"
+                                                name="nickname"
+                                                placeholder="Ketikan nickname atau alias mu..."
+                                                value={values.nickname}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                css={{ width: "100%" }}
+                                                autocomplete="nickname"
+                                            />
+                                            {errors.nickname && <ErrorMessage msg={errors.nickname} />}
+                                        </InputWrapper>
+                                    </InputOuterWrapper>
+                                )}
+
+                                <InputOuterWrapper>
+                                    <InputWrapper>
+                                        <Text as="label" htmlFor="phone" css={{ fontWeight: "medium", fontSize: "1rem", color: "$dark" }}>
+                                            Nomor Telepon
+                                        </Text>
+                                        <TextInput
+                                            id="phone"
+                                            name="phone"
+                                            placeholder="Ketikan nomor telepon mu..."
+                                            value={values.phone}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            css={{ width: "100%" }}
+                                            required="required"
+                                            autocomplete="tel"
+                                        />
+                                        {errors.phone && <ErrorMessage msg={errors.phone} />}
+                                    </InputWrapper>
+                                </InputOuterWrapper>
+
+                                <InputOuterWrapper>
+                                    <InputWrapper>
+                                        <Text as="label" htmlFor="address" css={{ fontWeight: "medium", fontSize: "1rem", color: "$dark" }}>
+                                            Alamat
+                                        </Text>
+                                        <TextInput
+                                            id="address"
+                                            name="address"
+                                            placeholder="Ketikan alamat tinggal mu..."
+                                            value={values.address}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            css={{ width: "100%" }}
+                                            required="required"
+                                            autocomplete="street-address"
+                                        />
+                                        {errors.address && <ErrorMessage msg={errors.address} />}
+                                    </InputWrapper>
+                                </InputOuterWrapper>
+
+                                {data.use_institution_field && (
+                                    <InputOuterWrapper>
+                                        <InputWrapper>
+                                            <Text as="label" htmlFor="institution" css={{ fontWeight: "medium", fontSize: "1rem", color: "$dark" }}>
+                                                Institusi (SMK/SMA/UMUM)
+                                            </Text>
+                                            <TextInput
+                                                id="institution"
+                                                name="institution"
+                                                placeholder="Ketikan institusi mu..."
+                                                value={values.institution}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 css={{ width: "100%" }}
                                                 required="required"
-                                                autocomplete="tel"
+                                                autocomplete="organization"
                                             />
-                                            {errors.phone && (
-                                                <ErrorMessage msg={errors.phone} />
-                                            )}
+                                            {errors.institution && <ErrorMessage msg={errors.institution} />}
                                         </InputWrapper>
                                     </InputOuterWrapper>
+                                )}
+
+                                {data.use_description_field && (
                                     <InputOuterWrapper>
                                         <InputWrapper>
-                                            <TextInput
-                                                name="address"
-                                                placeholder="Ketikan alamat tinggal mu..."
-                                                value={values.address}
+                                            <Text as="label" htmlFor="description" css={{ fontWeight: "medium", fontSize: "1rem", color: "$dark" }}>
+                                                Deskripsi/ Tema
+                                            </Text>
+                                            <TextArea
+                                                id="description"
+                                                name="description"
+                                                placeholder="Masukan keterangan judul lagu/tema/karakter yang akan diperlombakan..."
+                                                value={values.description}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 css={{ width: "100%" }}
                                                 required="required"
-                                                autocomplete="street-address"
+                                                autocomplete="off"
                                             />
-                                            {errors.address && (
-                                                <ErrorMessage msg={errors.address} />
-                                            )}
+                                            {errors.description && <ErrorMessage msg={errors.description} />}
                                         </InputWrapper>
                                     </InputOuterWrapper>
-                                    {data.use_institution_field && (
-                                        <InputOuterWrapper>
-                                            <InputWrapper>
-                                                <TextInput
-                                                    name="institution"
-                                                    placeholder="Ketikan institusi mu (SMK/SMA/UMUM)..."
-                                                    value={values.institution}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    css={{ width: "100%" }}
-                                                    required="required"
-                                                    autocomplete="organization"
-                                                />
-                                                {errors.institution && (
-                                                    <ErrorMessage
-                                                        msg={errors.institution}
-                                                    />
-                                                )}
-                                            </InputWrapper>
-                                        </InputOuterWrapper>
-                                    )}
-                                    {data.use_description_field && (
-                                        <InputOuterWrapper>
-                                            <InputWrapper>
-                                                <TextArea
-                                                    name="description"
-                                                    placeholder="Masukan keterangan judul lagu/tema/karakter yang akan diperlombakan..."
-                                                    value={values.description}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    css={{ width: "100%" }}
-                                                    required="required"
-                                                    autocomplete="off"
-                                                />
-                                                {errors.description && (
-                                                    <ErrorMessage
-                                                        msg={errors.description}
-                                                    />
-                                                )}
-                                            </InputWrapper>
-                                        </InputOuterWrapper>
-                                    )}
-                                    {data.use_instagram_field && (
-                                        <InputOuterWrapper
-                                            css={{
-                                                display: "flex",
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <Text css={{ color: "$dark" }}>@</Text>
-                                            <InputWrapper css={{ width: '100%' }}>
-                                                <TextInput
-                                                    name="instagram"
-                                                    placeholder="Ketikan username Instagram mu (opsional)..."
-                                                    value={values.instagram}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    css={{ width: "100%" }}
-                                                />
-                                                {errors.instagram && (
-                                                    <ErrorMessage
-                                                        msg={errors.instagram}
-                                                    />
-                                                )}
-                                            </InputWrapper>
-                                        </InputOuterWrapper>
-                                    )}
-                                    {data.use_tool_field && (
+                                )}
+
+                                {data.use_instagram_field && (
+                                    <InputOuterWrapper css={{ display: "flex", width: "100%" }}>
+                                        <Text css={{ color: "$dark", alignSelf: "flex-end" }}>@</Text>
+                                        <InputWrapper css={{ width: "100%" }}>
+                                            <Text as="label" htmlFor="instagram" css={{ fontWeight: "medium", fontSize: "1rem", color: "$dark" }}>
+                                                Instagram (Opsional)
+                                            </Text>
+                                            <TextInput
+                                                id="instagram"
+                                                name="instagram"
+                                                placeholder="Ketikan username Instagram mu..."
+                                                value={values.instagram}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                css={{ width: "100%" }}
+                                            />
+                                            {errors.instagram && <ErrorMessage msg={errors.instagram} />}
+                                        </InputWrapper>
+                                    </InputOuterWrapper>
+                                )}
+
+                                {data.use_tool_field && (
                                     <>
-                                        <Text css={{ fontSize: "1.6rem", color: "$dark", overflow: "hidden", paddingTop: "1rem" }}>Pilihan Penggunaan Alat</Text>
+                                        <Text css={{ fontSize: "1.6rem", color: "$dark", overflow: "hidden", paddingTop: "1rem" }}>
+                                            Pilihan Penggunaan Alat
+                                        </Text>
                                         <InputOuterWrapper css={{ display: "flex", fontSize: "1.4rem" }}>
                                             <InputWrapper css={{ flexDirection: "row" }}>
                                                 <TextInput
@@ -304,9 +321,11 @@ function OrderRegistrationPage({ data, links: { submitUrl }, meta }) {
                                                     id="withtools"
                                                     required="required"
                                                 />
-                                                <label htmlFor="withtools" className={css({ userSelect: "none", fontSize: "1vw", "@mobile" : {fontSize: "3vw"} }).toString()}>pakai peralatan yang disediakan</label>
+                                                <label htmlFor="withtools" className={css({ userSelect: "none", fontSize: "1vw", "@mobile": { fontSize: "3vw" } }).toString()}>
+                                                    pakai peralatan yang disediakan
+                                                </label>
                                             </InputWrapper>
-                                            <InputWrapper css={{ flexDirection: "row", fontSize: "1.4rem", fontWeight: "medium" }}>
+                                            <InputWrapper css={{ flexDirection: "row" }}>
                                                 <TextInput
                                                     name="withTools"
                                                     type="radio"
@@ -317,63 +336,59 @@ function OrderRegistrationPage({ data, links: { submitUrl }, meta }) {
                                                     id="withouttools"
                                                     required="required"
                                                 />
-                                                <label htmlFor="withouttools" className={css({ userSelect: "none", fontSize: "1vw", "@mobile" : {fontSize: "3vw"} }).toString()}>pakai peralatan pribadi</label>
+                                                <label htmlFor="withouttools" className={css({ userSelect: "none", fontSize: "1vw", "@mobile": { fontSize: "3vw" } }).toString()}>
+                                                    pakai peralatan pribadi
+                                                </label>
                                             </InputWrapper>
-                                            {errors.withTools && (
-                                                <ErrorMessage
-                                                    msg={errors.withTools}
-                                                />
-                                            )}
+                                            {errors.withTools && <ErrorMessage msg={errors.withTools} />}
                                         </InputOuterWrapper>
                                     </>
-                                    )}
-                                    {data.use_multi_participant &&
-                                        values.teamMembers.length > 0 && (
-                                            <>
-                                                <Text css={{ fontSize: "1.6rem", color: "$dark", overflow: "hidden", paddingTop: "1rem" }}>Identitas Tim</Text>
-                                                <InputOuterWrapper>
-                                                    <InputWrapper>
-                                                        <TextInput
-                                                            name="teamName"
-                                                            placeholder="Ketikan nama tim yang diinginkan..."
-                                                            value={values.teamName}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            css={{ width: "100%" }}
-                                                        />
-                                                        {errors.teamName && (
-                                                            <ErrorMessage
-                                                                msg={errors.teamName}
-                                                            />
-                                                        )}
-                                                    </InputWrapper>
-                                                </InputOuterWrapper>
-                                            </>
-                                        )}
-                                    {data.use_multi_participant && (
-                                        <TeamSection
-                                            errors={errors}
-                                            values={values}
-                                            maxParticipants={data.max_participants}
-                                            useInstagramField={
-                                                data.use_instagram_field
-                                            }
-                                            useNicknameField={
-                                                data.use_nickname_field
-                                            }
-                                        />
-                                    )}
-                                    <Button
-                                        // color="light"
-                                        css={{ marginTop: "2rem", "@mobile": {fontSize: "4vw"} }}
-                                        type="submit"
-                                        fullWidth
-                                    >
-                                        Order Now
-                                    </Button>
-                                </Form>
-                            );
-                        }}
+                                )}
+
+                                {data.use_multi_participant && values.teamMembers.length > 0 && (
+                                    <>
+                                        <Text css={{ fontSize: "1.6rem", color: "$dark", overflow: "hidden", paddingTop: "1rem" }}>
+                                            Identitas Tim
+                                        </Text>
+                                        <InputOuterWrapper>
+                                            <InputWrapper>
+                                                <Text as="label" htmlFor="teamName" css={{ fontWeight: "medium", fontSize: "1rem", color: "$dark" }}>
+                                                    Nama Tim
+                                                </Text>
+                                                <TextInput
+                                                    id="teamName"
+                                                    name="teamName"
+                                                    placeholder="Ketikan nama tim yang diinginkan..."
+                                                    value={values.teamName}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    css={{ width: "100%" }}
+                                                />
+                                                {errors.teamName && <ErrorMessage msg={errors.teamName} />}
+                                            </InputWrapper>
+                                        </InputOuterWrapper>
+                                    </>
+                                )}
+
+                                {data.use_multi_participant && (
+                                    <TeamSection
+                                        errors={errors}
+                                        values={values}
+                                        maxParticipants={data.max_participants}
+                                        useInstagramField={data.use_instagram_field}
+                                        useNicknameField={data.use_nickname_field}
+                                    />
+                                )}
+
+                                <Button
+                                    css={{ marginTop: "2rem", "@mobile": { fontSize: "4vw" } }}
+                                    type="submit"
+                                    fullWidth
+                                >
+                                    Order Now
+                                </Button>
+                            </Form>
+                        )}
                     </Formik>
                 )}
             </Container>

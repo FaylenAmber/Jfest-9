@@ -164,7 +164,7 @@ export default function Activities({ activities, competitions }) {
                         onClick={() => handleFilterActs("all")}
                         fullWidth
                     >
-                        Alls
+                        All
                     </Button>
                     <Button
                         // color="light"
@@ -260,15 +260,29 @@ export default function Activities({ activities, competitions }) {
                                             justifyContent: "space-between",
                                         }}
                                     >
-                                        <Text css={{ color: "$dark" }} className={css({
-                                            wordBreak: "keep-all",
-                                            fontSize: "1.2vw",
-                                            overflow: "hidden",
-                                            width: "70%",
-                                            padding: "0.1vw 0",
-                                            "@mobile": { width: "60%", fontSize: "1.2rem" },
-                                            "@tablet": { fontSize: "2vw" }
-                                        }).toString()}>
+                                        <Text
+                                            css={{
+                                                color: "$dark",
+                                                wordBreak: "keep-all",
+                                                overflow: "hidden",
+                                                width: "70%",
+                                                padding: "0.1vw 0",
+                                                fontSize: activity.type.toLowerCase() === "activity" || activity.type.toLowerCase() === "competition"
+                                                    ? "1rem"
+                                                    : "1.2vw",
+                                                "@mobile": {
+                                                    width: "60%",
+                                                    fontSize: activity.type.toLowerCase() === "activity" || activity.type.toLowerCase() === "competition"
+                                                        ? "1rem"
+                                                        : "1.2rem"
+                                                },
+                                                "@tablet": {
+                                                    fontSize: activity.type.toLowerCase() === "activity" || activity.type.toLowerCase() === "competition"
+                                                        ? "1.2rem"
+                                                        : "2vw"
+                                                }
+                                            }}
+                                        >
                                             {activity.name}
                                         </Text>
                                         <ActivityTag tag={activity.type} css={{ alignItems: "center" }}>

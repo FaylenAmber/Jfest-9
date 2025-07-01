@@ -9,7 +9,7 @@ const Logo = styled(JFestLogo, {
     display: "block",
     objectFit: "cover",
     objectPosition: "center",
-    width: 85,
+    width: 75,
 });
 
 export default function NavbarLogo() {
@@ -24,11 +24,11 @@ export default function NavbarLogo() {
 
     return (
         <Link href={homeUrl}>
-            {width < 768 ? 
-                <Logo css={{ 
+            {width < 768 ?
+                <Logo css={{
                     width: 55
-                }} /> 
-            : 
+                }} />
+            :
                 <Logo />
             }
         </Link>

@@ -8,6 +8,9 @@ import { ReactComponent as TagOrange } from "@/assets/activities/tag-orange.svg"
 
 const Title = styled(Text, {
     fontSize: "2.5em",
+    "@mobile": {
+        fontSize: "8vw",
+    },
 });
 
 export default function HeaderSection({ name, type, isActivity, closedDate }) {
