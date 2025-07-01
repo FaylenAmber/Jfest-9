@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function __invoke(Request $request, OrderService $orderService)
     {
-        $activity = Activity::where('slug', 'japanese-festival-8')->first();
+        $activity = Activity::where('slug', 'jfest-ticket')->first();
         $order = $request->user()->orders()->where([
             ['status', OrderStatusEnum::Pending->value],
             ['expired_at', '>', now()]

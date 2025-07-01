@@ -16,41 +16,59 @@ class Jfest9Seeder extends Seeder
     public function run(): void
     {
         $sales = collect([
-            new ActivitySale([
+            new ActivitySale([ // ID : 0
                 'unique_id' => 'PS1',
                 'name' => 'Pre-Sale 1',
-                'price' => 35000,
+                'price' => 30000,
                 'tickets_qty_available' => 200
             ]),
-            new ActivitySale([
+            new ActivitySale([ // ID : 1
                 'unique_id' => 'PS2',
                 'name' => 'Pre-Sale 2',
-                'price' => 40000,
-                'tickets_qty_available' => 300
+                'price' => 35000,
+                'tickets_qty_available' => 450
             ]),
-            new ActivitySale([
-                'unique_id' => 'PS3',
-                'name' => 'Pre-Sale 3',
-                'price' => 45000,
-                'tickets_qty_available' => 10000
-            ]),
-            new ActivitySale([
+            new ActivitySale([ // ID : 2
                 'unique_id' => 'OTS',
                 'name' => 'On The Spot',
-                'price' => 50000,
-                'tickets_qty_available' => 10000
+                'price' => 40000,
+                'tickets_qty_available' => 250
             ]),
-            new ActivitySale([
+            new ActivitySale([ // ID : 3
                 'unique_id' => 'OBA',
-                'name' => 'Tiket Obake',
-                'price' => 35000,
-                'tickets_qty_available' => 500
+                'name' => 'Obake Ticket',
+                'price' => 20000,
+                'tickets_qty_available' => 50
             ]),
-            new ActivitySale([
+            new ActivitySale([ // ID : 4
+                'unique_id' => 'EX1',
+                'name' => 'EXPO Ticket',
+                'price' => 30000,
+                'tickets_qty_available' => 150
+            ]),
+            new ActivitySale([ // ID : 5
+                'unique_id' => 'EX2',
+                'name' => 'EXPO Ticket',
+                'price' => 35000,
+                'tickets_qty_available' => 150
+            ]),
+            new ActivitySale([ // ID : 6
                 'unique_id' => 'BD1',
-                'name' => 'Bundle Tiket JFest + Obake',
-                'price' => 65000,
-                'tickets_qty_available' => 300
+                'name' => 'Obake Bundle – 2 Tickets',
+                'price' => 30000,
+                'tickets_qty_available' => 50
+            ]),
+            new ActivitySale([ // ID : 7
+                'unique_id' => 'BD2',
+                'name' => 'Pre-Sale 1 + EXPO (Offline)',
+                'price' => 50000,
+                'tickets_qty_available' => 50
+            ]),
+            new ActivitySale([ // ID : 8
+                'unique_id' => 'BD3',
+                'name' => 'Pre-Sale 2 + EXPO (Online)',
+                'price' => 60000,
+                'tickets_qty_available' => 50
             ])
         ])->map(function ($activitySale) {
             $activitySale->save();
@@ -59,29 +77,56 @@ class Jfest9Seeder extends Seeder
 
         collect([
             new Activity([
-                'activity_sale_id' => $sales[0]->id,
-                'name' => 'Japanese Festival 8',
+                'activity_sale_id' => $sales[0]->id, // TIKET PRE-SALE 1 JFEST
+                'name' => 'JFEST Ticket',
                 'description' => 'Jfest is a japanese culture special event held by JCOS (Japanese Community of STIKOM Bali)',
                 'image_url' => 'https://bucket.jfestbali.id/images/presale1.webp',
-                'date' => Carbon::create(2024, 10, 8),
+                'date' => Carbon::create(2025, 10, 5),
                 'purchase_opened_at' => Carbon::create(2025, 1, 1),
                 'purchase_closed_at' => Carbon::create(2025, 10, 5)
             ]),
             new Activity([
-                'activity_sale_id' => $sales[4]->id,
-                'name' => 'Obake Haunted House',
-                'description' => 'Wahana rumah hantu spesial bertema Jepang',
-                'image_url' => 'https://bucket.jfestbali.id/images/obake.webp',
-                'date' => Carbon::create(2025, 10, 18),
+                'activity_sale_id' => $sales[7]->id, // Bundling Pre-Sale 1 + EXPO Offline
+                'name' => 'JFEST | EXPO Bundle',
+                'description' => 'Nikmati pengalaman penuh JFEST#9 dengan tiket bundling spesial: akses ke seluruh festival dan seminar EXPO secara langsung di lokasi. Lebih hemat, lebih seru!',
+                'image_url' => 'https://bucket.jfestbali.id/images/bundling_presale1_expo_offline.webp',
+                'date' => Carbon::create(2025, 10, 5),
                 'purchase_opened_at' => Carbon::create(2025, 6, 1),
                 'purchase_closed_at' => Carbon::create(2025, 10, 5)
             ]),
             new Activity([
-                'activity_sale_id' => $sales[5]->id,
-                'name' => 'Bundle Tiket JFest#9 + Obake',
-                'description' => 'Nikmati pengalaman JFEST lebih lengkap dengan Bundling Tiket JFEST + Obake!',
-                'image_url' => 'https://bucket.jfestbali.id/images/bundling_1.webp',
-                'date' => Carbon::create(2025, 10, 18),
+                'activity_sale_id' => $sales[3]->id, // TIKET OBAKE
+                'name' => 'Obake Haunted House',
+                'description' => 'Wahana rumah hantu spesial bertema Jepang',
+                'image_url' => 'https://bucket.jfestbali.id/images/obake.webp',
+                'date' => Carbon::create(2025, 10, 5),
+                'purchase_opened_at' => Carbon::create(2025, 6, 1),
+                'purchase_closed_at' => Carbon::create(2025, 10, 5)
+            ]),
+            new Activity([
+                'activity_sale_id' => $sales[6]->id, // Obake Bundle – 2 Tickets
+                'name' => 'Obake Haunted House Bundle',
+                'description' => 'Dapatkan 2 tiket wahana rumah hantu Obake dalam satu bundling spesial! Cocok untuk datang bersama teman atau pasangan, dan nikmati pengalaman horor bertema Jepang yang menegangkan.',
+                'image_url' => 'https://bucket.jfestbali.id/images/obake_bundle.webp',
+                'date' => Carbon::create(2025, 10, 5),
+                'purchase_opened_at' => Carbon::create(2025, 6, 1),
+                'purchase_closed_at' => Carbon::create(2025, 10, 5)
+            ]),
+            new Activity([
+                'activity_sale_id' => $sales[4]->id, // EXPO Offline
+                'name' => 'EXPO Ticket (Offline)',
+                'description' => 'Seminar offline spesial JFEST#9 dengan narasumber inspiratif yang akan membahas berbagai topik menarik seputar budaya, teknologi, dan kreativitas Jepang.',
+                'image_url' => 'https://bucket.jfestbali.id/images/expo_offline.webp',
+                'date' => Carbon::create(2025, 10, 4),
+                'purchase_opened_at' => Carbon::create(2025, 6, 1),
+                'purchase_closed_at' => Carbon::create(2025, 10, 5)
+            ]),
+            new Activity([
+                'activity_sale_id' => $sales[5]->id, // EXPO Online
+                'name' => 'EXPO Ticket (Online)',
+                'description' => 'Ikuti seminar JFEST#9 secara daring! Acara ini menghadirkan pembicara yang akan berbagi wawasan tentang budaya Jepang dan bidang kreatif secara interaktif melalui platform online.',
+                'image_url' => 'https://bucket.jfestbali.id/images/expo_online.webp',
+                'date' => Carbon::create(2025, 10, 4),
                 'purchase_opened_at' => Carbon::create(2025, 6, 1),
                 'purchase_closed_at' => Carbon::create(2025, 10, 5)
             ])
