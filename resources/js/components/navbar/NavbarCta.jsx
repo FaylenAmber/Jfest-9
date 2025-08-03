@@ -59,7 +59,7 @@ export default function NavbarCta({ theme }) {
         <>
             {isAuthenticated ? (
                 <UserCard>
-                    
+
                     {width <= 768 ? (
                         <MenuButton onClick={toggleIsMobileNavbarOpened}>
                             <MenuIcon />

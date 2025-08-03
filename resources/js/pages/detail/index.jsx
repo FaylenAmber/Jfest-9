@@ -17,7 +17,7 @@ const Container = styled("section", {
     "@desktop": { paddingTop: "9.5rem" },
     "@laptop": { paddingTop: "9rem" },
     "@tablet": { paddingTop: "8.5rem" },
-    "@mobile": { paddingTop: "7.5rem" },
+    "@mobile": { paddingTop: "0rem" },
 });
 
 const Divider = styled("span", {
@@ -38,10 +38,10 @@ function DetailPage({ data, links: { orderUrl }, meta }) {
                     className={css({
                         display: "grid",
                         gridTemplateColumns: "350px auto",
-                        gap: "4rem",
+                        gap: "3rem",
                         "@mobile": {
                             gridTemplateColumns: "repeat(1, 1fr)",
-                            gap: "2rem",
+                            gap: "0.5rem",
                         },
                     }).toString()}
                 >

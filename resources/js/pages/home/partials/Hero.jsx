@@ -59,14 +59,14 @@ export default function Hero() {
             <Button as="a" color="light" href={orderTicketUrl} css={{ position: "absolute" }} className={ css({
                 bottom: "10vw",
                 width: "12vw",
-                "@laptop": { 
-                    bottom: "9vw", 
+                "@laptop": {
+                    bottom: "9vw",
                 },
-                "@tablet": { 
+                "@tablet": {
                     bottom: "4vw",
                 },
-                "@mobile": { 
-                    bottom: "12vw",
+                "@mobile": {
+                    bottom: "8.5vw",
                 },
                 zIndex: "2",
             }).toString()}>

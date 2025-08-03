@@ -27,6 +27,8 @@ const Container = styled("section", {
     gap: "2.5rem",
     padding: "3rem 5%",
     backgroundColor: "$white",
+    zIndex: 2,
+    translate: "0 -10px"
 });
 
 const Activity = styled("article", {
@@ -186,7 +188,7 @@ export default function Activities({ activities, competitions }) {
                 cols={3}
                 css={{
                     color: "$white",
-                    borderTop: "0.2vw solid $primary",
+                    borderTop: "0.2vw solid $white",
                     padding: "2rem 0",
                 }}
             >
@@ -329,7 +331,7 @@ export default function Activities({ activities, competitions }) {
                                 ) : (isActivity && activity.is_coming_up) || (!isActivity && activity.is_opened) ? (
                                     <DisabledBtn css={{ borderColor: "$dark" }}>
                                         <Text css={{ color: "$dark" }}>
-                                            Belum dibuka
+                                            Belum Dibuka
                                         </Text>
                                     </DisabledBtn>
                                 ) : (!isActivity && activity.price_tag == "ots") ? (

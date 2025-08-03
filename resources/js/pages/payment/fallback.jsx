@@ -8,8 +8,16 @@ import withNavbarMobile from "@/hooks/hoc/withNavbarMobile";
 import { Button } from "@/components/button";
 import { Text } from "@/components/text";
 import { Title } from "@/components/title";
+import { useEffect } from "react";
 
 function PaymentFallback({ data, links: { historyPageUrl }, meta }) {
+    useEffect(() => {
+        document.body.style.backgroundColor = "#ffffff";  // Putih
+        return () => {
+            document.body.style.backgroundColor = ""; // Reset saat keluar (optional)
+        };
+    }, []);
+
     return (
         <>
             {generateMetadata(meta.head)}
@@ -47,11 +55,11 @@ function PaymentFallback({ data, links: { historyPageUrl }, meta }) {
                 </Text>
                 <Text
                     css={{
-                        color: "$secondary",
+                        color: "$red",
                         fontSize: "1rem",
                     }}
                 >
-                    * Mohon jangan menghapus item pada halaman 'My Orders' jika transaksi belum dinyatakan selesai. <br/><br/> Hubungi contact person jika belum menerima email konfirmasi dalam jangka waktu 1 jam setelah transaksi dilakukan.
+                    * Mohon jangan menghapus item pada halaman 'My Orders' jika transaksi belum dinyatakan selesai. <br/> Hubungi contact person jika belum menerima email konfirmasi dalam jangka waktu 1 jam setelah transaksi dilakukan.
                 </Text>
             </div>
         </>

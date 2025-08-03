@@ -72,7 +72,7 @@ function HistoryPage({ data, meta, hasTicketPresale1 }) {
                 </div>
                 <Button
                     onClick={() => setModalVisible(false)}
-                    css={{ 
+                    css={{
                         width: "100%",
                         "@mobile": { width: "100%" }
                     }}

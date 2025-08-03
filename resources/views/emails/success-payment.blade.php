@@ -1,10 +1,10 @@
 <div style="display: block; width: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
     <header style="display: block; width: inherit; text-align: center">
         <div style="display: block; width: 75px; margin: 0 auto">
-            <img src="https://bucket.jfestbali.id/images/logo.png"
+            <img src="https://bucket.jfestbali.com/images/logo.png"
                 style="width: 100%; object-fit: contain; object-position: center; margin-left: -15px; margin-bottom: -10px;" />
         </div>
-        <h2>JFest Bali 8</h2>
+        <h2>JFest Bali 9</h2>
         <span style="display: block; margin-top: -5px">Exclusive event by JCOS (Japanese Community of STIKOM Bali)</span>
         <div>
             <a href="mailto:info@jfestbali.id">info@jfestbali.id</a>
@@ -17,7 +17,7 @@
             Dear {{ $user->name }},
             <br /><br />
             We are excited to inform you that your payment for order <strong>#{{ $order->reference }}</strong> has been
-            successfully processed. Thank you for placing order on JFest Bali 8.
+            successfully processed. Thank you for placing order on JFest Bali 9.
             <br />
             Here are the details of your order:
             <br />
@@ -42,7 +42,7 @@
         Please remember to bring your ticket QR code picture with you to the event. This will be used to expedite your
         check-in process and ensure a smooth entry.
         <br />
-        @if($order->tickets->count() > 0)     
+        @if($order->tickets->count() > 0)
             <a href="{{ route('ticket.download', ['user' => $user->uuid]) }}"
                 style="display: inline-block; margin-top: 10px; padding: 10px 15px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Download
                 Your Ticket QR Code(s)
@@ -58,6 +58,6 @@
     </main>
     <footer style="display: block; margin-top: 30px">
         <div>Best regards,</div>
-        <div>JFest Bali 8 Team</div>
+        <div>JFest Bali 9 Team</div>
     </footer>
 </div>

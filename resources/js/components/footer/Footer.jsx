@@ -14,7 +14,6 @@ const Container = styled("footer", {
     width: "100%",
     height: "fit-content",
     minHeight: "30vw",
-    maxWidth: "1440px",
     margin: "0 auto",
     padding: "5vw 2rem",
     paddingTop: "12.5vw",
@@ -23,6 +22,8 @@ const Container = styled("footer", {
     backgroundPosition: "top",
     backgroundSize: "100% auto",
     backgroundRepeat: "no-repeat",
+    zIndex: "1",
+    translate: "0 -15px",
     // "&::after, &::before": { zIndex: 1 },
     // "&::after": {
     //     content: `url("${bottomRightMisc}")`,

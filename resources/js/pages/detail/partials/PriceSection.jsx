@@ -31,9 +31,9 @@ export default function PriceSection({
                     color: "$dark", overflow: "hidden"
                 }}>
                     {("Rp"+price.toLocaleString("id-ID")+" "+(priceTag && `(${priceTag})`))}
-                
+
             </Text>
-            <div className={css({ display: "flex", gap: "1.25rem", flexDirection: "column", "@desktop": { flexDirection: "row" } }).toString()}>
+            <div className={css({ display: "flex", gap: "0.5rem", flexDirection: "column", "@desktop": { flexDirection: "row" } }).toString()}>
                 {(isActivity && !isTicketsAvailable) || (isActivity && !isGoingOn) || (isComingUp) ? (
                     <div
                         className={css({
@@ -54,7 +54,7 @@ export default function PriceSection({
                             },
                         }).toString()}
                     >
-                        <Text css={{ color: "$secondary", overflow: "hidden" }}>{(isComingUp) ? "Belum dibuka" :((isGoingOn) ? "Sold Out" : "Event Ended")}</Text>
+                        <Text css={{ color: "$secondaryRed", overflow: "hidden" }}>{(isComingUp) ? "PENDAFTARAN BELUM DIBUKA" :((isGoingOn) ? "SOLD OUT" : "EVENT ENDED")}</Text>
                     </div>
                 ) : (!isActivity && isClosed) || (!isActivity && isFull) ? (
                     <div
@@ -75,7 +75,7 @@ export default function PriceSection({
                             },
                         }).toString()}
                     >
-                        <Text css={{ color: "$secondary" }}>Registration Closed</Text>
+                        <Text css={{ color: "$secondaryRed" }}>Registration Closed</Text>
                     </div>
                 ) : (!isActivity && priceTag == "ots") ? (
                     <div
@@ -99,7 +99,7 @@ export default function PriceSection({
                         <Text css={{ color: "green" }}>Offline Registration</Text>
                     </div>
                 ) : (!isActivity && altLink) ? (
-                    <Button 
+                    <Button
                         href={altLink}
                         as="a"
                         target="_blank"

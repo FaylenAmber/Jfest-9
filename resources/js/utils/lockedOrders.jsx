@@ -7,7 +7,7 @@ export function isOrderLocked(orderId) {
     if (!lockedAt) return false;
 
     const now = Date.now();
-    const oneHour = 1 * 60 * 60 * 1000;
+    const timeLocked = 10 * 60 * 1000; // 10 menit
 
-    return now - lockedAt < oneHour;
+    return now - lockedAt < timeLocked;
 }

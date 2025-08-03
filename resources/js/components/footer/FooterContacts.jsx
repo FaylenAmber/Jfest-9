@@ -14,7 +14,7 @@ const contacts = [
     {
         id: 2,
         label: "Surya (085737243978)",
-        href: "https://wa.me/+6285737243978?text=Hai%20kak%20Angga%2C%20saya%20ingin%20bertanya%20nih.%20",
+        href: "https://wa.me/+6285737243978?text=Hai%20kak%20Surya%2C%20saya%20ingin%20bertanya%20nih.%20",
         Icon: WhatsappIcon,
     },
 ];
