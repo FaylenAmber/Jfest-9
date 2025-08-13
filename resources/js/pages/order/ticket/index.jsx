@@ -109,7 +109,7 @@ function OrderTicketPage({ data, links: { submitUrl }, meta }) {
                         </Button>
                     </form>
                 ) : (
-                    <Text css={{ color:"$secondary", overflow:"hidden", textAlign: "center" }}>{data.is_going_on ? (data.is_coming_up ? "Belum dibuka" : "Sold Out") : "Event Ended"}</Text>
+                    <Text css={{ color:"$secondary", overflow:"hidden", textAlign: "center" }}>{data.is_going_on ? (data.is_coming_up ? "Coming Soon" : "Sold Out") : "Event Ended"}</Text>
                 )}
             </Container>
         </>

@@ -27,6 +27,7 @@ export const {
         fonts: {
             main: "batangas",
             title: "go3",
+            popup: "helvetica",
         },
         fontSizes: {
             main: "1em",
