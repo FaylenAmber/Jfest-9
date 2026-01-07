@@ -94,7 +94,7 @@ export default function Hightlight() {
   }
 
   const settings = {
-    infinite: true,
+    infinite: false,
     autoplay: true,
     speed: 800,
     autoplaySpeed: 4000,
@@ -153,7 +153,7 @@ export default function Hightlight() {
         </Title>
         <Divider />
         <Slider {...settings} style={{ width: "100%", zIndex: "4" }}>
-          <div
+          {/* <div
             className={css({
                 position: "relative",
                 display: "flex",
@@ -189,7 +189,7 @@ export default function Hightlight() {
                 }).toString()}
                 />
             </picture>
-          </div>
+          </div> */}
 
           <div>
             <div
@@ -223,7 +223,7 @@ export default function Hightlight() {
               />
             </div>
           </div>
-          <div>
+          {/* <div>
             <div
               style={{
                 position: "relative",
@@ -252,7 +252,7 @@ export default function Hightlight() {
                 />
               </picture>
             </div>
-          </div>
+          </div> */}
         </Slider>
       </div>
       <Backdrop />

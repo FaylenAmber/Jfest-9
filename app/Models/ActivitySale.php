@@ -24,7 +24,10 @@ class ActivitySale extends Model
     protected static function booted()
     {
         static::retrieved(function (Model $model) {
-            $dbTicketsCount = Ticket::whereNotFreePass()->count();
+            $dbTicketsCount = Ticket::where('activity_id', $model->id)
+                ->whereNotFreePass()
+                ->count();
+
             $ticketsQtyAvailable = $model->getAttribute('tickets_qty_available');
 
             $model->setAttribute(
@@ -33,6 +36,7 @@ class ActivitySale extends Model
             );
         });
     }
+
 
     public function activities(): HasMany
     {

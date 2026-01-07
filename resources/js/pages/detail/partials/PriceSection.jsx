@@ -54,7 +54,7 @@ export default function PriceSection({
                             },
                         }).toString()}
                     >
-                        <Text css={{ color: "$secondaryRed", overflow: "hidden" }}>{(isComingUp) ? "Coming Soon" :((isGoingOn) ? "SOLD OUT" : "EVENT ENDED")}</Text>
+                        <Text css={{ color: "$secondaryRed", overflow: "hidden" }}>{(isComingUp) ? "Coming Soon" :((isGoingOn) ? "SOLD OUT" : "ORDER CLOSED")}</Text>
                     </div>
                 ) : (!isActivity && isClosed) || (!isActivity && isFull) ? (
                     <div

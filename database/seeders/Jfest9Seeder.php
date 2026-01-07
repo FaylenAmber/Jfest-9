@@ -82,8 +82,8 @@ class Jfest9Seeder extends Seeder
                 'description' => 'JFest is a japanese culture special event held by JCOS (Japanese Community of STIKOM Bali)',
                 'image_url' => 'https://bucket.jfestbali.com/images/tickets/presale1.webp',
                 'date' => Carbon::create(2025, 10, 5),
-                'purchase_opened_at' => Carbon::create(2025, 1, 1),
-                'purchase_closed_at' => Carbon::create(2025, 10, 5)
+                'purchase_opened_at' => Carbon::create(2025, 9, 1),
+                'purchase_closed_at' => Carbon::create(2025, 9, 5)
             ]),
             new Activity([
                 'activity_sale_id' => $sales[7]->id, // Bundling Pre-Sale 1 + EXPO Offline
@@ -91,8 +91,8 @@ class Jfest9Seeder extends Seeder
                 'description' => 'Nikmati pengalaman penuh JFEST#9 dengan tiket bundling spesial: akses ke seluruh festival dan seminar EXPO secara langsung. Lebih hemat, lebih seru!',
                 'image_url' => 'https://bucket.jfestbali.com/images/tickets/bundling_presale1_expo_offline.webp',
                 'date' => Carbon::create(2025, 10, 5),
-                'purchase_opened_at' => Carbon::create(2025, 6, 1),
-                'purchase_closed_at' => Carbon::create(2025, 10, 5)
+                'purchase_opened_at' => Carbon::create(2025, 9, 1),
+                'purchase_closed_at' => Carbon::create(2025, 9, 5)
             ]),
             new Activity([
                 'activity_sale_id' => $sales[3]->id, // TIKET OBAKE
@@ -100,7 +100,7 @@ class Jfest9Seeder extends Seeder
                 'description' => 'Wahana rumah hantu spesial bertema Jepang',
                 'image_url' => 'https://bucket.jfestbali.com/images/tickets/obake.webp',
                 'date' => Carbon::create(2025, 10, 5),
-                'purchase_opened_at' => Carbon::create(2025, 6, 1),
+                'purchase_opened_at' => Carbon::create(2025, 10, 1),
                 'purchase_closed_at' => Carbon::create(2025, 10, 5)
             ]),
             new Activity([
@@ -109,7 +109,7 @@ class Jfest9Seeder extends Seeder
                 'description' => 'Dapatkan 2 tiket wahana rumah hantu Obake dalam satu bundling spesial! Cocok untuk datang bersama teman atau pasangan, dan nikmati pengalaman horor bertema Jepang yang menegangkan.',
                 'image_url' => 'https://bucket.jfestbali.com/images/tickets/obake_bundle.webp',
                 'date' => Carbon::create(2025, 10, 5),
-                'purchase_opened_at' => Carbon::create(2025, 6, 1),
+                'purchase_opened_at' => Carbon::create(2025, 10, 1),
                 'purchase_closed_at' => Carbon::create(2025, 10, 5)
             ]),
             new Activity([
@@ -120,8 +120,6 @@ class Jfest9Seeder extends Seeder
                 'date' => Carbon::create(2025, 10, 4),
                 'purchase_opened_at' => Carbon::create(2025, 6, 1),
                 'purchase_closed_at' => Carbon::create(2025, 10, 5),
-                'use_name_field' => true,
-                'use_nim_field' => true,
             ]),
             new Activity([
                 'activity_sale_id' => $sales[5]->id, // EXPO Online
@@ -131,8 +129,6 @@ class Jfest9Seeder extends Seeder
                 'date' => Carbon::create(2025, 10, 4),
                 'purchase_opened_at' => Carbon::create(2025, 6, 1),
                 'purchase_closed_at' => Carbon::create(2025, 10, 5),
-                'use_name_field' => true,
-                'use_nim_field' => true,
             ]),
 
 

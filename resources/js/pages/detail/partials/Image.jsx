@@ -4,15 +4,13 @@ import ComingSoon from "@/assets/misc/coming-soon.webp";
 import Frame from "@/assets/activities/frame.webp";
 
 const BaseImageInner = styled("img", {
-    height: "83%",
-    width: "60%",
+    width: "100%",
+    height: "auto",
+    maxWidth: "100%",
     objectFit: "contain",
     objectPosition: "center",
     textAlign: "center",
-    position: "absolute",
-    top: "57%",
-    left: "50%",
-    translate: "-50% -50%",
+    position: "relative",
     lineHeight: 10,
     fontSize: 30
 });
@@ -23,15 +21,16 @@ const BaseImageOuter = styled("span", {
     zIndex: "1",
     alignItems: "center",
     justifyContent: "center",
-    width: "auto",
-    height: 350,
+    width: "100%",
+    overflow: "hidden",
     backgroundPosition: "center",
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
+    marginTop: "1rem",
     variants: {
         frame: {
             activity: {
-                backgroundImage: `url("${Frame}")`,
+                backgroundImage: "none",
             },
             competition: {
                 backgroundImage: `url("${Frame}")`,
@@ -41,6 +40,9 @@ const BaseImageOuter = styled("span", {
     defaultVariants: {
         frame: "activity",
     },
+    "@mobile": {
+        marginTop: "5.5rem"
+    }
 });
 
 export default function Image({ src = null, type, ...props }) {

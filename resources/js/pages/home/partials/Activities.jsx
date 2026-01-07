@@ -70,7 +70,7 @@ const ActivityImage = styled("span", {
     variants: {
         frame: {
             activity: {
-                backgroundImage: `url("${Frame}")`,
+                backgroundImage: "none",
             },
             competition: {
                 backgroundImage: `url("${Frame}")`,
@@ -193,6 +193,7 @@ export default function Activities({ activities, competitions }) {
                 }}
             >
                 {filteredActs.map((activity) => {
+                    console.log("DEBUG ACTIVITY:", activity);
                     const isActivity = activity.type.toLowerCase() === "activity";
                     const uniqueKey = uuidv4();
                     return (
@@ -204,56 +205,60 @@ export default function Activities({ activities, competitions }) {
                             <Activity>
                                 <div className={css({ position: "relative" }).toString()}>
                                     <ActivityImage frame={activity.type} />
-                                    {activity.image_url ? (
-                                        <img
-                                            className={css({
-                                                height: "67%",
-                                                width: "44%",
-                                                objectFit: "contain",
-                                                objectPosition: "center",
-                                                textAlign: "center",
-                                                position: "absolute",
-                                                top: "57%",
-                                                left: "50%",
-                                                translate: "-50% -50%",
-                                                lineHeight: "16vw",
-                                                fontSize: "1vw",
-                                                "@tablet": {
-                                                    width: "60%"
-                                                },
-                                                "@mobile": {
-                                                    width: "65%"
-                                                }
-                                            }).toString()}
-                                            src={activity.image_url}
-                                            alt="Failed to load"
-                                        />
-                                    ) : (
-                                        <img
-                                            className={css({
-                                                height: "50%",
-                                                width: "40%",
-                                                objectFit: "contain",
-                                                objectPosition: "center",
-                                                textAlign: "center",
-                                                position: "absolute",
-                                                top: "50%",
-                                                left: "50%",
-                                                translate: "-50% -50%",
-                                                lineHeight: "16vw",
-                                                fontSize: "1vw",
-                                                "@tablet": {
-                                                    width: "55%"
-                                                },
-                                                "@mobile": {
-                                                    width: "60%"
-                                                }
-                                            }).toString()}
-                                            src={ComingSoon}
-                                            alt="Coming soon"
-                                        />
-                                    )}
+                                    <div
+                                        className={css({
+                                            position: "absolute",
+                                            top: "57%",
+                                            left: "50%",
+                                            translate: "-50% -50%",
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                            width: "100%",
+                                            "@mobile": {
+                                                paddingLeft: activity.type.toLowerCase() === "activity" ? "0" : "80px",
+                                                paddingRight: activity.type.toLowerCase() === "activity" ? "0" : "80px"
+                                            }
+                                        }).toString()}
+                                    >
+                                        {activity.image_url ? (
+                                            <img
+                                                className={css({
+                                                    width: activity.type.toLowerCase() === "activity" ? "88%" : "44%",
+                                                    height: activity.type.toLowerCase() === "activity" ? "134%" : "67%",
+                                                    objectFit: "contain",
+                                                    "@tablet": {
+                                                        width: activity.type.toLowerCase() === "activity" ? "70%" : "60%"
+                                                    },
+                                                    "@mobile": {
+                                                        width: "100%",
+                                                        objectPosition: activity.type.toLowerCase() === "activity" ? "bottom" : "center",
+                                                     }
+                                                }).toString()}
+                                                src={activity.image_url}
+                                                alt="Failed to load"
+                                            />
+                                        ) : (
+                                            <img
+                                                className={css({
+                                                    width: activity.type.toLowerCase() === "activity" ? "48%" : "40%",
+                                                    height: activity.type.toLowerCase() === "activity" ? "60%" : "50%",
+                                                    objectFit: "contain",
+                                                    "@tablet": {
+                                                        width: activity.type.toLowerCase() === "activity" ? "68%" : "55%"
+                                                    },
+                                                    "@mobile": {
+                                                        width: "100%",
+                                                    }
+                                                }).toString()}
+                                                src={ComingSoon}
+                                                alt="Coming soon"
+                                            />
+                                        )}
+
+                                    </div>
                                 </div>
+
                                 <ActivityBody>
                                     <div
                                         style={{
@@ -316,10 +321,16 @@ export default function Activities({ activities, competitions }) {
                                             : (isActivity && (activity.sale.name))}
                                     </Text>
                                 </ActivityBody>
-                                {(isActivity && !activity.sale.is_tickets_available) || (isActivity && !activity.is_going_on) ? (
+                                {(isActivity && activity.is_coming_up) || (!isActivity && activity.is_opened) ? (
+                                    <DisabledBtn css={{ borderColor: "$dark" }}>
+                                        <Text css={{ color: "$dark" }}>
+                                            Coming Soon
+                                        </Text>
+                                    </DisabledBtn>
+                                ) : (isActivity && !activity.sale.is_tickets_available) || (isActivity && !activity.is_going_on) ? (
                                     <DisabledBtn>
                                         <Text css={{ color: "$dark" }}>
-                                            {activity.is_going_on ? "Sold Out" : "Event Ended"}
+                                            {activity.is_going_on ? "Sold Out" : "Order Closed"}
                                         </Text>
                                     </DisabledBtn>
                                 ) : (!isActivity && activity.is_closed) || (!isActivity && activity.is_quota_full) ? (
@@ -328,13 +339,7 @@ export default function Activities({ activities, competitions }) {
                                             Registration Closed
                                         </Text>
                                     </DisabledBtn>
-                                ) : (isActivity && activity.is_coming_up) || (!isActivity && activity.is_opened) ? (
-                                    <DisabledBtn css={{ borderColor: "$dark" }}>
-                                        <Text css={{ color: "$dark" }}>
-                                            Belum Dibuka
-                                        </Text>
-                                    </DisabledBtn>
-                                ) : (!isActivity && activity.price_tag == "ots") ? (
+                                ) : (!isActivity && activity.price_tag == "OTS") ? (
                                     <DisabledBtn css={{ borderColor: "$dark" }}>
                                         <Text css={{ color: "$dark" }}>
                                             Offline Registration

@@ -37,12 +37,15 @@ function DetailPage({ data, links: { orderUrl }, meta }) {
                 <div
                     className={css({
                         display: "grid",
-                        gridTemplateColumns: "350px auto",
+                        gridTemplateColumns: "450px auto",
                         gap: "3rem",
                         "@mobile": {
                             gridTemplateColumns: "repeat(1, 1fr)",
                             gap: "0.5rem",
                         },
+                        "& > :first-child": {
+                            overflow: "hidden",
+                        }
                     }).toString()}
                 >
                     <Image type={data.type} src={data.image_url} />
