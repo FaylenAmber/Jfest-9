@@ -148,6 +148,9 @@ export default function RegistrationCard({ data }) {
                     display: "flex",
                     flexDirection: "column",
                     gap: "0.5rem",
+                    flex: 1,
+                    alignItems: "flex-start",
+                    textAlign: "left"
                 }}
             >
                 <Text css={{ color: "$dark" }}>{data.competition.name}</Text>
@@ -173,20 +176,15 @@ export default function RegistrationCard({ data }) {
                 }).toString()}
             >
                 {width > 768 && (
-                    <>
-                        <Text
-                            css={{
-                                color: "$dark",
-                                fontSize: "1.5rem",
-                                "@mobile": { fontSize: "1.25rem" },
-                            }}
-                        >
-                            Rp {data.price.toLocaleString("id-ID")}
-                        </Text>
-                        {!isLocked && (
-                            <RemoveButton onClick={handleRemoveOrder}>Hapus</RemoveButton>
-                        )}
-                    </>
+                    <Text
+                        css={{
+                            color: "$dark",
+                            fontSize: "1.5rem",
+                            "@mobile": { fontSize: "1.25rem" },
+                        }}
+                    >
+                        Rp {data.price.toLocaleString("id-ID")}
+                    </Text>
                 )}
                 {!data.uuid && (
                     <Text
@@ -199,6 +197,11 @@ export default function RegistrationCard({ data }) {
                     >
                         Pending
                     </Text>
+                )}
+                {width > 768 && !isLocked && (
+                    <RemoveButton onClick={handleRemoveOrder}>
+                        Hapus
+                    </RemoveButton>
                 )}
             </div>
         </Wrapper>

@@ -70,6 +70,9 @@ export default function Navbar({ theme = "dark" }) {
     : {
         backgroundColor: "rgba(0, 0, 0, 0.3)", // transparan tapi gelap
         backdropFilter: "none",
+        "@mobile": {
+            backgroundColor: "transparent",
+        },
       };
 
   return (

@@ -74,7 +74,14 @@ function OrderTicketPage({ data, links: { submitUrl }, meta }) {
                                     placeholder="Input tickets amount..."
                                     value={inputs.amount}
                                     onChange={handleChange}
-                                    css={{ width: "100%", textAlign: "center" }}
+                                    css={{ width: "100%",
+                                        textAlign: "center",
+                                        fontSize: "1.5rem",
+                                        height: "3.5rem",
+                                        "@mobile": {
+                                        fontSize: "6vw",
+                                        height: "12vw" }
+                                    }}
                                 />
                                 {errors.amount && (
                                     <Text
@@ -102,8 +109,8 @@ function OrderTicketPage({ data, links: { submitUrl }, meta }) {
                         </Button>
                     </form>
                 ) : (
-                    <Text css={{ color:"$secondary", overflow:"hidden", textAlign: "center" }}>{data.is_going_on ? (data.is_coming_up ? "Belum dibuka" : "Sold Out") : "Event Ended"}</Text>
-                )}  
+                    <Text css={{ color:"$secondary", overflow:"hidden", textAlign: "center" }}>{data.is_going_on ? (data.is_coming_up ? "Coming Soon" : "Sold Out") : "Order Closed"}</Text>
+                )}
             </Container>
         </>
     );

@@ -147,7 +147,10 @@ export default function TicketCard({ data }) {
                 style={{
                     display: "flex",
                     flexDirection: "column",
-                    gap: "0.5rem"
+                    gap: "0.5rem",
+                    flex: 1,
+                    alignItems: "flex-start",
+                    textAlign: "left"
                 }}
             >
                 <Text css={{ color: "$dark", overflow: "hidden" }}>Ticket {data.activity.name}</Text>

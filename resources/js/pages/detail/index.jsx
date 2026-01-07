@@ -17,7 +17,7 @@ const Container = styled("section", {
     "@desktop": { paddingTop: "9.5rem" },
     "@laptop": { paddingTop: "9rem" },
     "@tablet": { paddingTop: "8.5rem" },
-    "@mobile": { paddingTop: "7.5rem" },
+    "@mobile": { paddingTop: "0rem" },
 });
 
 const Divider = styled("span", {
@@ -37,12 +37,15 @@ function DetailPage({ data, links: { orderUrl }, meta }) {
                 <div
                     className={css({
                         display: "grid",
-                        gridTemplateColumns: "350px auto",
-                        gap: "4rem",
+                        gridTemplateColumns: "450px auto",
+                        gap: "3rem",
                         "@mobile": {
                             gridTemplateColumns: "repeat(1, 1fr)",
-                            gap: "2rem",
+                            gap: "0.5rem",
                         },
+                        "& > :first-child": {
+                            overflow: "hidden",
+                        }
                     }).toString()}
                 >
                     <Image type={data.type} src={data.image_url} />

@@ -14,23 +14,59 @@ const Title = styled(Text, {
 });
 
 export default function HeaderSection({ name, type, isActivity, closedDate }) {
-    const date = new Date(closedDate);
-    const option = { day: 'numeric', month: 'short', year: 'numeric' };
-    const formattedDate = date.toLocaleDateString('en-GB', option);
-    return (
-        <section
-            style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
+  const date = new Date(closedDate);
+  const option = { day: 'numeric', month: 'short', year: 'numeric' };
+  const formattedDate = date.toLocaleDateString('en-GB', option);
+
+  return (
+    <section
+        style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.75rem",
+        }}
+        >
+        <div
+            style={{
+            display: "flex",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "0.75rem",
+            }}
         >
             <Title css={{ color: "$dark", overflow: "hidden" }}>{name}</Title>
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <div
+                style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                }}
+            >
                 {isActivity ? <TagBlue /> : <TagOrange />}
-                <Text css={{ color: isActivity ? "$dark" : "$secondary", overflow: "hidden" }}>
-                    {type}
-                </Text>
-                <Text css={{ color: "$dark", "@mobile": {width: "60%"} }}>
-                    {isActivity ? "" : " closed at "+formattedDate}
+                <Text
+                css={{
+                    color: isActivity ? "$dark" : "$secondary",
+                    fontSize: "1.25rem",
+                    "@mobile": {fontSize: "0.95rem"},
+                }}
+                >
+                {type}
                 </Text>
             </div>
+        </div>
+
+        <Text
+            css={{
+            color: "$dark",
+            display: "flex",
+            flexDirection: "column",
+            lineHeight: "1.3",
+            fontSize: "1.25rem",
+            }}
+        >
+            <span>Closed at</span>
+            <span>{formattedDate}</span>
+        </Text>
         </section>
-    );
+  );
 }

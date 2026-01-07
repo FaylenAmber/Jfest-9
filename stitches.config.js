@@ -20,10 +20,14 @@ export const {
             tertiary: "#5c6748",
             dark: "#252525",
             white: "#f9f4f4",
+            red: "#BB2A2B",
+            secondaryRed: "#c32a35",
+            orange: "#DF6B56"
         },
         fonts: {
             main: "batangas",
             title: "go3",
+            popup: "helvetica",
         },
         fontSizes: {
             main: "1em",

@@ -117,7 +117,7 @@ export default function Item({ data, type }) {
                                 css={{
                                     color:
                                         data.attended_status !== "attended"
-                                            ? "$secondary"
+                                            ? "$secondaryRed"
                                             : "green",
                                     fontSize: "1.25rem",
                                     overflow: "hidden"

@@ -43,11 +43,11 @@ function flatAndGroupObjectsBy(array, identifier) {
 
 function CheckoutPage({ data, links: { redirectToPaymentUrl }, meta }) {
     const tickets = Object.entries(
-        flatAndGroupObjectsBy(data.tickets, "price")
+        flatAndGroupObjectsBy(data.tickets, "id")
     );
 
     const registrations = Object.entries(
-        flatAndGroupObjectsBy(data.registrations, "price")
+        flatAndGroupObjectsBy(data.registrations, "id")
     );
 
     let totalTicket = tickets

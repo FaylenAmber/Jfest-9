@@ -53,8 +53,9 @@ class Ticket extends Model
             return false;
         }
 
-        $typeId = explode('-', $this->code)[1];
-        return ActivitySale::find($typeId)->unique_id === 'PS1';
+        $typeCode = explode('-', $this->code)[1] ?? null;
+        return $typeCode === 'PS1';
+
     }
 
     public function isFreePass(): bool

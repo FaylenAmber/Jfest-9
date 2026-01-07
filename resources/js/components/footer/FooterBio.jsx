@@ -25,14 +25,18 @@ export default function FooterBio() {
                     height: "fit-content",
                     width: "fit-content",
                     gap: "1.5rem",
+                    overflow: "hidden",
                 }).toString()}
             >
                 <JFestLogo
                     className={css({
                         width: 120,
+                        pointerEvent: "none",
                         "@mobile": {
                             width: 80,
-                            transform: "translate(-1rem, 1rem)",
+                            marginTop: "1rem",
+                            marginBottom: "-1rem",
+                            marginLeft: "-1rem",
                         },
                     }).toString()}
                 />

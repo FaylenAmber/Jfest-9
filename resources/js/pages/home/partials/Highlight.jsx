@@ -5,13 +5,14 @@ import "slick-carousel/slick/slick-theme.css";
 import comingSoon from "@/assets/misc/coming-soon.webp";
 import comingSoonMobile from "@/assets/misc/coming-soon_mobile.webp";
 import firstBanner from "@/assets/tickets/ticket.webp";
+import firstBannerMobile from "@/assets/tickets/ticket-mobile.webp";
 import secondBanner from "@/assets/misc/banner.webp";
 import secondBannerMobile from "@/assets/misc/bannerMobile.webp";
 import { css, styled } from "@/root/stitches.config";
 import { Button } from "@/components/button";
 import { Divider } from "@/components/divider";
 import { Title } from "@/components/title";
-import backdrop from "@/assets/misc/backdrop2.webp";
+import backdrop from "@/assets/misc/backdrop2_mobile_crop.webp";
 import backdropMobile from "@/assets/misc/backdrop2-mobile.webp";
 
 const mediaOrientationLandscape = `@media screen and ${[
@@ -93,7 +94,7 @@ export default function Hightlight() {
   }
 
   const settings = {
-    infinite: true,
+    infinite: false,
     autoplay: true,
     speed: 800,
     autoplaySpeed: 4000,
@@ -131,11 +132,12 @@ export default function Hightlight() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          paddingBottom: "35vw",
+          paddingBottom: "50vw",
           gap: "2rem",
           zIndex: 1,
           "@mobile": {
             paddingBottom: "50vw",
+            gap: "1rem",
           },
         }).toString()}
       >
@@ -151,29 +153,43 @@ export default function Hightlight() {
         </Title>
         <Divider />
         <Slider {...settings} style={{ width: "100%", zIndex: "4" }}>
-          <div>
-            <div
-              className={css({
+          {/* <div
+            className={css({
                 position: "relative",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 paddingTop: "2rem",
                 "@mobile": {
-                    paddingTop: "0.5rem",
+                paddingTop: "0.5rem",
                 }
-              }).toString()}
+            }).toString()}
             >
-              <img
-                src={firstBanner}
-                alt=""
+            <picture
                 className={css({
-                  width: "80%",
-                  "@mobile": { width: "95%" },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                height: "100%",
                 }).toString()}
-              />
-            </div>
-          </div>
+            >
+                <source media="(max-width: 768px)" srcSet={firstBannerMobile} />
+                <img
+                src={firstBanner}
+                alt="Ticket Banner"
+                className={css({
+                    width: "80%",
+                    objectFit: "contain",
+                    display: "block",
+                    margin: "auto",
+                    "@mobile": {
+                    width: "95%",
+                    },
+                }).toString()}
+                />
+            </picture>
+          </div> */}
 
           <div>
             <div
@@ -190,8 +206,9 @@ export default function Hightlight() {
             >
               <div
                 className={css({
-                  width: "80%",
-                  height: "25vw",
+                  width: "85%",
+                  height: "30vw",
+                  marginTop: "-0.5rem",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "contain",
@@ -199,13 +216,14 @@ export default function Hightlight() {
                   "@mobile": {
                     width: "95%",
                     height: "50vw",
+                    marginTop: "0.1rem",
                     backgroundImage: `url("${secondBannerMobile}")`,
                   },
                 }).toString()}
               />
             </div>
           </div>
-          <div>
+          {/* <div>
             <div
               style={{
                 position: "relative",
@@ -226,12 +244,15 @@ export default function Hightlight() {
                     width: "auto",
                     maxWidth: "100%",
                     margin: "0 auto",
-                    "@mobile": { maxWidth: "90vw" },
+                    "@mobile": {
+                        maxWidth: "90vw",
+                        marginTop: "-0.85rem",
+                     },
                   }).toString()}
                 />
               </picture>
             </div>
-          </div>
+          </div> */}
         </Slider>
       </div>
       <Backdrop />

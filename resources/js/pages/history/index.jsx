@@ -14,164 +14,185 @@ import { useEffect } from "react";
 import Modal from "react-modal";
 
 const Container = styled("section", {
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-    height: "max-content",
-    minHeight: "70vh",
-    padding: "2rem 5%",
-    backgroundColor: "$white",
-    "@desktop": { paddingTop: "9.5rem" },
-    "@laptop": { paddingTop: "9rem" },
-    "@tablet": { paddingTop: "8.5rem" },
-    "@mobile": { paddingTop: "8rem" },
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  height: "max-content",
+  minHeight: "70vh",
+  padding: "2rem 5%",
+  backgroundColor: "$white",
+  "@desktop": { paddingTop: "9.5rem" },
+  "@laptop": { paddingTop: "9rem" },
+  "@tablet": { paddingTop: "8.5rem" },
+  "@mobile": { paddingTop: "8rem" },
 });
 
-function HistoryPage({ data, meta, hasTicketPresale1 }) {
-    const [modalVisible, setModalVisible] = useToggle(false);
+function HistoryPage({ data, meta }) {
+  const [modalVisible, setModalVisible] = useToggle(false);
 
-    const customStyles = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            padding: "3rem",
-            maxWidth: "55rem",
-            transform: 'translate(-50%, -50%)',
-            display: "grid",
-            gap: "0.5rem",
-            zIndex: 4,
-        },
-        overlay: {
-            zIndex: 4,
-        }
-    };
+  console.log("Data orders diterima di HistoryPage:", data);
 
-    const AnnouncementModal = () => {
-        return (
-            <Modal
-                isOpen={modalVisible}
-                onRequestClose={setModalVisible}
-                contentLabel="Annoucement"
-                ariaHideApp={false}
-                style={customStyles}
-                shouldCloseOnOverlayClick={false}
-            >
-                <Text className={css({ color: "$dark", fontSize: "2rem", textAlign: "center" })}>Pengumuman Penting</Text>
-                <div className={css({
-                    padding: "0 1rem",
-                }).toString()}>
-                    <Text className={css({ color: "$dark", padding: "1rem 0" })}>
-                        Khusus untuk pembelian ticket Pre-Sale 1, kamu berkesempatan untuk mendapatkan 'Special Limited Ticket' ! {" "} Silahkan untuk mengisi form di bawah untuk request nickname ya!
-                    </Text>
-                    <Text className={css({ color: "$secondary", padding: "1rem 0" })}>
-                        Catatan: pada form, gunakanlah/isilah <u>email yang sama</u> dengan email digunakan untuk login pada website.
-                    </Text>
-                </div>
-                <Button
-                    onClick={() => setModalVisible(false)}
-                    css={{ 
-                        width: "100%",
-                        "@mobile": { width: "100%" }
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      padding: "3rem",
+      maxWidth: "55rem",
+      transform: "translate(-50%, -50%)",
+      display: "grid",
+      gap: "0.5rem",
+      zIndex: 4,
+    },
+    overlay: {
+      zIndex: 4,
+    },
+  };
+
+  const AnnouncementModal = () => {
+    return (
+      <Modal
+        isOpen={modalVisible}
+        onRequestClose={setModalVisible}
+        contentLabel="Pengumuman"
+        ariaHideApp={false}
+        style={customStyles}
+        shouldCloseOnOverlayClick={false}
+      >
+        <Text
+          className={css({ color: "$white", fontSize: "2rem", textAlign: "center" })}
+        >
+          Pengumuman Penting
+        </Text>
+        <div className={css({ padding: "0 1rem" }).toString()}>
+          <Text className={css({ color: "$white", padding: "1rem 0" })}>
+            Khusus untuk pemegang tiket EXPO, kamu wajib mengisi form berikut untuk Pendataan Peserta Seminar EXPO
+          </Text>
+        </div>
+        <Button
+          onClick={() => setModalVisible(false)}
+          css={{
+            width: "100%",
+            "@mobile": { width: "100%" },
+          }}
+          as="a"
+          href={"https://forms.gle/r5DrZyJWHuZrrxx28"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Isi Form
+        </Button>
+      </Modal>
+    );
+  };
+
+  // Tampilkan modal kalau ada minimal 1 tiket EXPO di semua order
+  useEffect(() => {
+    if (data && data.length > 0) {
+      const foundExpo = data.some((order) =>
+        order.tickets.some((ticket) => ticket.activity.name.toUpperCase().includes("EXPO"))
+      );
+      if (foundExpo) setModalVisible(true);
+    }
+  }, [data, setModalVisible]);
+
+  return (
+    <>
+      {generateMetadata(meta.head)}
+      <Container>
+        <header
+          className={css({
+            display: "block",
+            width: "100%",
+            paddingBottom: "2rem",
+            borderBottom: "1.5px solid rgba(255, 255, 255, 0.05)",
+            "@mobile": { paddingBottom: "1.5rem" },
+          }).toString()}
+        >
+          <Title
+            css={{
+              fontSize: "2rem",
+              letterSpacing: 1.25,
+              "@mobile": { fontSize: "1.5rem" },
+            }}
+          >
+            History
+          </Title>
+        </header>
+
+        <section
+          className={css({
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+          }).toString()}
+        >
+          {data.map((order) => {
+            const orderHasExpo = order.tickets.some(ticket =>
+              ticket.activity.name.toUpperCase().includes("EXPO")
+            );
+
+            return (
+              <div
+                key={order.reference}
+                className={css({
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                  padding: "2rem 0rem",
+                  borderBottom: "1.5px solid rgba(255, 255, 255, 0.05)",
+                  "@mobile": {
+                    gap: "1.25rem",
+                    padding: "1.5rem 0rem",
+                  },
+                }).toString()}
+              >
+                {orderHasExpo && (
+                  <Button
+                    css={{
+                      margin: "1rem 0",
+                      maxWidth: "300px",
                     }}
                     as="a"
-                    href={"https://forms.gle/Qj1QXoDKCfGURSF68"}
+                    href="https://forms.gle/r5DrZyJWHuZrrxx28"
                     target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Isi Form
+                  </Button>
+                )}
+
+                <Text
+                  css={{
+                    color: "$dark",
+                    overflow: "hidden",
+                  }}
                 >
-                    Link Form
-                </Button>
-            </Modal>
-        )
-    }
+                  Order: {order.reference}
+                </Text>
+                <ItemContainer>
+                  {order.tickets.map((ticket) => (
+                    <Item key={ticket.id} data={ticket} type={ticket.activity.type} />
+                  ))}
+                  {order.registrations.map((registration) => (
+                    <Item
+                      key={registration.id}
+                      data={registration}
+                      type={registration.competition.type}
+                    />
+                  ))}
+                </ItemContainer>
+              </div>
+            );
+          })}
+        </section>
 
-    function checkConditionAndShowModal() {
-        const condition = hasTicketPresale1;
-
-        // if (condition) {
-        //     setModalVisible(true);
-        // }
-    }
-
-    useEffect(() => {
-        checkConditionAndShowModal();
-    }, [])
-
-
-    return (
-        <>
-            {generateMetadata(meta.head)}
-            <Container>
-                <header
-                    className={css({
-                        display: "block",
-                        width: "100%",
-                        paddingBottom: "2rem",
-                        borderBottom: "1.5px solid rgba(255, 255, 255, 0.05)",
-                        "@mobile": { paddingBottom: "1.5rem" },
-                    }).toString()}
-                >
-                    <Title
-                        css={{
-                            fontSize: "2rem",
-                            letterSpacing: 1.25,
-                            "@mobile": { fontSize: "1.5rem" },
-                        }}
-                    >
-                        History
-                    </Title>
-                </header>
-                <section
-                    className={css({
-                        display: "flex",
-                        flexDirection: "column",
-                        width: "100%",
-                    }).toString()}
-                >
-                    {data.map((order) => (
-                        <div
-                            key={order.reference}
-                            className={css({
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "1rem",
-                                padding: "2rem 0rem",
-                                borderBottom:
-                                    "1.5px solid rgba(255, 255, 255, 0.05)",
-                                "@mobile": {
-                                    gap: "1.25rem",
-                                    padding: "1.5rem 0rem",
-                                },
-                            }).toString()}
-                        >
-                            {modalVisible && <AnnouncementModal />}
-                            <Text css={{
-                                color: "$dark",
-                                overflow: "hidden"
-                            }}>Order: {order.reference}</Text>
-                            <ItemContainer>
-                                {order.tickets.map((ticket) => (
-                                    <Item
-                                        key={ticket.id}
-                                        data={ticket}
-                                        type={ticket.activity.type}
-                                    />
-                                ))}
-                                {order.registrations.map((registration) => (
-                                    <Item
-                                        key={registration.id}
-                                        data={registration}
-                                        type={registration.competition.type}
-                                    />
-                                ))}
-                            </ItemContainer>
-                        </div>
-                    ))}
-                </section>
-            </Container>
-        </>
-    );
+        {modalVisible && <AnnouncementModal />}
+      </Container>
+    </>
+  );
 }
 
 export default withNavbarMobile(HistoryPage);

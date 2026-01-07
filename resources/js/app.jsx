@@ -13,6 +13,7 @@ import { Navbar } from "@/components/navbar";
 
 import batangas from "@/assets/fonts/batangas.otf";
 import go3 from "@/assets/fonts/go3v2.ttf";
+import helvetica from "@/assets/fonts/Helvetica.woff";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,6 +21,7 @@ const globalStyles = globalCss({
     "@font-face": [
         { fontFamily: "batangas", src: `url("${batangas}")` },
         { fontFamily: "go3", src: `url("${go3}")` },
+        { fontFamily: "helvetica", src: `url("${helvetica}")` },
     ],
     "*, html": {
         margin: 0,
